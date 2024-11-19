@@ -2,6 +2,7 @@ package com.example.bookspdm.ui
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookspdm.R
@@ -45,6 +46,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId) {
+        R.id.addBookMi -> {
+            true
+        }
+        else -> {
+            false
+        }
     }
 
     private fun fillBookList(){
