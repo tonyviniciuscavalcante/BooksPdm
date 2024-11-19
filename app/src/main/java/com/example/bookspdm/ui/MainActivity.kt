@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId) {
         R.id.addBookMi -> {
+            // Abrir tela para adicionar novo livro
             true
         }
         else -> {
