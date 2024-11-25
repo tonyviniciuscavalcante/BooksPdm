@@ -25,11 +25,13 @@ class MainActivity : AppCompatActivity() {
 
         ArrayAdapter(this, android.R.layout.simple_list_item_1, bookList.run{
             val bookTitleList: MutableList<String> = mutableListOf()
-            bookList.forEach{ book -> bookTitleList.add(book.title)}
+            // bookList.forEach{ book -> bookTitleList.add(book.title)}
             this.forEach{ bookTitleList.add(it.title) }
             bookTitleList
         })
     }
+
+    
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
