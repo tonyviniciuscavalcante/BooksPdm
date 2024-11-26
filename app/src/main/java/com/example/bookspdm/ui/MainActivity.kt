@@ -3,8 +3,11 @@ package com.example.bookspdm.ui
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView.AdapterContextMenuInfo
 import android.widget.ArrayAdapter
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -58,7 +61,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         //fillBookList()
-        amb.booksLV.adapter = bookAdapter
+
+        amb.booksLv.adapter = bookAdapter
+
+        registerForContextMenu(amb.booksLv)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -74,6 +80,31 @@ class MainActivity : AppCompatActivity() {
         }
         else -> {
             false
+        }
+    }
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) = menuInflater.inflate(R.menu.context_menu_main, menu)
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        val position = (item.menuInfo as AdapterContextMenuInfo).position
+        return when(item.itemId) {
+            R.id.editBookMi -> {
+                // Chamar tela de ediçāo de livro
+                true
+            }
+            R.id.removeBookMi -> {
+                // Remover livro da lista
+                bookList.removeAt(position)
+                bookAdapter.notifyDataSetChanged()
+                true
+            }
+            else -> {
+                false
+            }
         }
     }
 
