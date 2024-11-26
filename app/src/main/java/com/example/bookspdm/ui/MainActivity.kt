@@ -49,8 +49,14 @@ class MainActivity : AppCompatActivity() {
                 else {
                     result.data?.getParcelableExtra(Constant.BOOK, Book::class.java)
                 }
-                book?.let{
-                    bookList.add(it)
+                book?.let{ receivedBook ->
+                    val position = bookList.indexOfFirst { it.isbn == receivedBook.isbn }
+                    if (position == -1) {
+                        bookList.add(receivedBook)
+                    }
+                    else {
+                        bookList[position] = receivedBook
+                    }
                     bookAdapter.notifyDataSetChanged()
                 }
             }
