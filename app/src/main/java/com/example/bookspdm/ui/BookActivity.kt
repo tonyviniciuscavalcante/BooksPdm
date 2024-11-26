@@ -10,6 +10,7 @@ import com.example.bookspdm.R
 import com.example.bookspdm.databinding.ActivityBookBinding
 import com.example.bookspdm.model.Book
 import com.example.bookspdm.model.Constant
+import com.example.bookspdm.model.Constant.BOOK
 
 class BookActivity : AppCompatActivity() {
     private val abb: ActivityBookBinding by lazy {
@@ -19,8 +20,23 @@ class BookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(abb.root)
 
+        val receivedBook = intent.getParcelableExtra<Book>(BOOK)
+        receivedBook?.let { book ->
+            with(abb) {
+                with(book) {
+                    titleEt.setText(title)
+                    isbnEt.setText(isbn)
+                    isbnEt.isEnabled = false
+                    firstAuthorEt.setText(firstAuthor)
+                    publisherEt.setText(publisher)
+                    editionEt.setText(edition.toString())
+                    pagesEt.setText(pages.toString())
+                }
+            }
+        }
+
         abb.toolbarIn.toolbar.let {
-            it.subtitle = "New book"
+            it.subtitle = if (receivedBook == null) "New book" else "Edit book"
             setSupportActionBar(it)
         }
 

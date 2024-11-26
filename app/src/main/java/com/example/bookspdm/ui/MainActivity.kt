@@ -16,6 +16,7 @@ import com.example.bookspdm.R
 import com.example.bookspdm.databinding.ActivityMainBinding
 import com.example.bookspdm.model.Book
 import com.example.bookspdm.model.Constant
+import com.example.bookspdm.model.Constant.BOOK
 
 class MainActivity : AppCompatActivity() {
     private val amb: ActivityMainBinding by lazy{
@@ -94,6 +95,10 @@ class MainActivity : AppCompatActivity() {
         return when(item.itemId) {
             R.id.editBookMi -> {
                 // Chamar tela de ediçāo de livro
+                Intent(this, BookActivity::class.java).apply {
+                    putExtra(BOOK, bookList[position])
+                    barl.launch(this)
+                }
                 true
             }
             R.id.removeBookMi -> {
