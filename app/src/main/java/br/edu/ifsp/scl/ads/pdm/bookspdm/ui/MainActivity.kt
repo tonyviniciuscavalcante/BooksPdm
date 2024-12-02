@@ -18,6 +18,7 @@ import br.edu.ifsp.scl.ads.pdm.bookspdm.model.Constant.BOOK
 import com.example.bookspdm.R
 import com.example.bookspdm.databinding.ActivityMainBinding
 
+
 class MainActivity : AppCompatActivity() {
     private val amb: ActivityMainBinding by lazy{
         ActivityMainBinding.inflate(layoutInflater)

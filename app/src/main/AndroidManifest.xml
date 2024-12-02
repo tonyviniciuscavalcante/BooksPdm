@@ -13,10 +13,10 @@
         android:theme="@style/Theme.BooksPdm"
         tools:targetApi="31">
         <activity
-            android:name=".ui.BookActivity"
+            android:name="br.edu.ifsp.scl.ads.pdm.bookspdm.ui.BookActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name="br.edu.ifsp.scl.ads.pdm.bookspdm.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
