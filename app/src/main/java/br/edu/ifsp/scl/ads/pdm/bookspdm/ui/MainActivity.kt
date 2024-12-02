@@ -17,6 +17,7 @@ import br.edu.ifsp.scl.ads.pdm.bookspdm.databinding.ActivityMainBinding
 import br.edu.ifsp.scl.ads.pdm.bookspdm.model.Book
 import br.edu.ifsp.scl.ads.pdm.bookspdm.model.Constant
 import br.edu.ifsp.scl.ads.pdm.bookspdm.model.Constant.BOOK
+import br.edu.ifsp.scl.ads.pdm.bookspdm.model.Constant.VIEW_MODE
 
 
 class MainActivity : AppCompatActivity() {
@@ -68,9 +69,16 @@ class MainActivity : AppCompatActivity() {
             setSupportActionBar(it)
         }
 
-        //fillBookList()
+        fillBookList()
 
         amb.booksLv.adapter = bookAdapter
+        amb.booksLv.setOnItemClickListener { _, _, position, _ ->
+            Intent(this, BookActivity::class.java).apply {
+                putExtra(BOOK, bookList[position])
+                putExtra(VIEW_MODE, true)
+                startActivity(this)
+            }
+        }
 
         registerForContextMenu(amb.booksLv)
     }
@@ -104,6 +112,7 @@ class MainActivity : AppCompatActivity() {
                 // Chamar tela de ediçāo de livro
                 Intent(this, BookActivity::class.java).apply {
                     putExtra(BOOK, bookList[position])
+                    putExtra(VIEW_MODE, false)
                     barl.launch(this)
                 }
                 true
