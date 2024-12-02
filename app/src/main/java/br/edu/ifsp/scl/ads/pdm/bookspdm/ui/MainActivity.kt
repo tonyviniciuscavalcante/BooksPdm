@@ -12,11 +12,11 @@ import android.widget.ArrayAdapter
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import br.edu.ifsp.scl.ads.pdm.bookspdm.R
+import br.edu.ifsp.scl.ads.pdm.bookspdm.databinding.ActivityMainBinding
 import br.edu.ifsp.scl.ads.pdm.bookspdm.model.Book
 import br.edu.ifsp.scl.ads.pdm.bookspdm.model.Constant
 import br.edu.ifsp.scl.ads.pdm.bookspdm.model.Constant.BOOK
-import com.example.bookspdm.R
-import com.example.bookspdm.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
