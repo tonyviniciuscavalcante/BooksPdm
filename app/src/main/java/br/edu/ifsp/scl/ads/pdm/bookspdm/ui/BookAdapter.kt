@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import br.edu.ifsp.scl.ads.pdm.bookspdm.R
-import br.edu.ifsp.scl.ads.pdm.bookspdm.databinding.TileBookBinding
 import br.edu.ifsp.scl.ads.pdm.bookspdm.model.Book
+import com.example.bookspdm.R
+import com.example.bookspdm.databinding.TileBookBinding
 import org.w3c.dom.Text
 
 class BookAdapter(context: Context, private val bookList: MutableList<Book>): ArrayAdapter<Book>(context, R.layout.tile_book, bookList) {

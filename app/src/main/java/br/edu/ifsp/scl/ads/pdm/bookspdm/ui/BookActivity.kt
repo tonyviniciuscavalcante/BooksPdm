@@ -6,10 +6,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import br.edu.ifsp.scl.ads.pdm.bookspdm.databinding.ActivityBookBinding
 import br.edu.ifsp.scl.ads.pdm.bookspdm.model.Book
 import br.edu.ifsp.scl.ads.pdm.bookspdm.model.Constant
 import br.edu.ifsp.scl.ads.pdm.bookspdm.model.Constant.BOOK
+import com.example.bookspdm.databinding.ActivityBookBinding
 
 class BookActivity : AppCompatActivity() {
     private val abb: ActivityBookBinding by lazy {
