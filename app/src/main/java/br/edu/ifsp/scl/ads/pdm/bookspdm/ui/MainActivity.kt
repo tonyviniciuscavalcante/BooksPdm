@@ -137,8 +137,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fillBookList() {
-        bookList.clear()
-        bookList.addAll(mainController.getBooks())
-        bookAdapter.notifyDataSetChanged()
+        Thread {
+            bookList.clear()
+            bookList.addAll(mainController.getBooks())
+            bookAdapter.notifyDataSetChanged()
+        }.start()
     }
 }
