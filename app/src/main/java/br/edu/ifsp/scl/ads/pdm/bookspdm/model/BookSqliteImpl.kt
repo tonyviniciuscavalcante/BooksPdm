@@ -3,6 +3,7 @@ package br.edu.ifsp.scl.ads.pdm.bookspdm.model
 import android.content.ContentValues
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import br.edu.ifsp.scl.ads.pdm.bookspdm.R
@@ -47,7 +48,23 @@ class BookSqliteImpl(context: Context) : BookDao {
         bookDatabase.insert(BOOK_TABLE, null, bookToContentValues(book))
 
     override fun retriveBook(isbn: String): Book {
-        TODO("Not yet implemented")
+        val cursor = bookDatabase.query(
+            true,
+            BOOK_TABLE,
+            null,
+            "$ISBN_COLUMN = ?",
+            arrayOf(isbn),
+            null,
+            null,
+            null,
+            null
+        )
+
+        return if (cursor.moveToFirst()) {
+            cursorToBook(cursor)
+        } else {
+            Book()
+        }
     }
 
     override fun retriveBooks(): MutableList<Book> {
@@ -76,5 +93,16 @@ class BookSqliteImpl(context: Context) : BookDao {
             put(EDITION_COLUMN, edition)
             put(PAGES_COLUMN, pages)
         }
+    }
+
+    private fun cursorToBook(cursor: Cursor) = with(cursor) {
+        Book(
+            getString(getColumnIndexOrThrow(TITLE_COLUMN)),
+            getString(getColumnIndexOrThrow(ISBN_COLUMN)),
+            getString(getColumnIndexOrThrow(FIRST_AUTHOR_COLUMN)),
+            getString(getColumnIndexOrThrow(PUBLISHER_COLUMN)),
+            getInt(getColumnIndexOrThrow(EDITION_COLUMN)),
+            getInt(getColumnIndexOrThrow(PAGES_COLUMN))
+        )
     }
 }
