@@ -48,6 +48,12 @@ class BookSqliteImpl(context: Context) : BookDao {
         bookDatabase.insert(BOOK_TABLE, null, bookToContentValues(book))
 
     override fun retriveBook(isbn: String): Book {
+
+//        val cursor = bookDatabase.rawQuery(
+//            "SELECT * FROM $BOOK_TABLE WHERE $ISBN_COLUMN = ?",
+//            arrayOf(isbn)
+//        )
+
         val cursor = bookDatabase.query(
             true,
             BOOK_TABLE,
