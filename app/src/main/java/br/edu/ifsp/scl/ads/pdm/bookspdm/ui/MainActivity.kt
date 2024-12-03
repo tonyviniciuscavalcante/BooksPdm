@@ -124,9 +124,9 @@ class MainActivity : AppCompatActivity() {
 
             R.id.removeBookMi -> {
                 // Remover livro da lista
+                mainController.removeBook(bookList[position].isbn)
                 bookList.removeAt(position)
                 bookAdapter.notifyDataSetChanged()
-                mainController.removeBook(bookList[position].isbn)
                 true
             }
 
