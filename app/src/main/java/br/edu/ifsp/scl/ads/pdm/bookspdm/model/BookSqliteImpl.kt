@@ -68,7 +68,18 @@ class BookSqliteImpl(context: Context) : BookDao {
     }
 
     override fun retriveBooks(): MutableList<Book> {
-        TODO("Not yet implemented")
+        val bookList = mutableListOf<Book>()
+
+        val cursor = bookDatabase.rawQuery(
+            "SELECT * FROM $BOOK_TABLE",
+            null
+        )
+
+        while (cursor.moveToNext()) {
+            bookList.add(cursorToBook(cursor))
+        }
+
+        return bookList
     }
 
     override fun updateBook(book: Book) = bookDatabase.update(
