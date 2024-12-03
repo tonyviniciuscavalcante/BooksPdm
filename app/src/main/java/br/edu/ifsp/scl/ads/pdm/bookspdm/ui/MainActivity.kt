@@ -57,8 +57,10 @@ class MainActivity : AppCompatActivity() {
                         val position = bookList.indexOfFirst { it.isbn == receivedBook.isbn }
                         if (position == -1) {
                             bookList.add(receivedBook)
+                            mainController.insertBook(receivedBook)
                         } else {
                             bookList[position] = receivedBook
+                            mainController.modifyBook(receivedBook)
                         }
                         bookAdapter.notifyDataSetChanged()
                     }
@@ -135,17 +137,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fillBookList() {
-        for (index in 1..50) {
-            bookList.add(
-                Book(
-                    "Title $index",
-                    "ISBN$index",
-                    "Author $index",
-                    "Publisher $index",
-                    index,
-                    index * 100
-                )
-            )
-        }
+        bookList.clear()
+        bookList.addAll(mainController.getBooks())
+        bookAdapter.notifyDataSetChanged()
     }
 }
